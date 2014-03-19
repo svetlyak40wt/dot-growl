@@ -9,8 +9,16 @@ go and install [dotfiler][], then clone this repository, using
 `dot add <url>` command and run `dot update` to make all necessary
 symlinks.
 
+What is this?
+-------------
+
 This helper is a zsh function notify-back, which goes via ssh back to
-you desktop and calls growlnotify.
+you desktop and calls `growlnotify`.
+
+This quite useful, when you frequently running some slow process on a
+server and want to be notified when it is done. In this case you just do:
+
+    some-long-running-task --with params; notify-back 'Horay! Task done.'
 
 To make it work, add something like that to the `~/.ssh/config` on your
 desktop machine:
