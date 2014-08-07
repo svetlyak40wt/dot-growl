@@ -1,10 +1,9 @@
-
 # sends notification from server back to the
 # desktop's Growl through ssh
 # to make this works, install GrowlNotify
 # from here http://growl.info/downloads
 
-function notify-back ()
+function notify ()
 {
     message="${1:-Done}"
     title="${2:-Remote command}"
