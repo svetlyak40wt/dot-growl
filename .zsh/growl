@@ -3,9 +3,15 @@
 # to make this works, install GrowlNotify
 # from here http://growl.info/downloads
 
-function notify ()
+function nb ()
 {
-    message="${1:-Done}"
-    title="${2:-Remote command}"
-    ssh back /usr/local/bin/growlnotify -m "\"$message\"" -t "\"$title\""
+    GROWL_COMMAND=/usr/local/bin/growlnotify
+
+    if [ -e "$GROWL_COMMAND" ]; then
+        $GROWL_COMMAND -m "\"$message\"" -t "\"$title\""
+    else
+        message="${1:-Done}"
+        title="${2:-Remote command}"
+        ssh back $GROWL_COMMAND -m "\"$message\"" -t "\"$title\""
+    fi
 }

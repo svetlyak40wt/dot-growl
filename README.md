@@ -12,13 +12,15 @@ symlinks.
 What is this?
 -------------
 
-This helper is a zsh function notify-back, which goes via ssh back to
-you desktop and calls `growlnotify`.
+This helper provides a zsh function `nb`, which goes via ssh back to
+you desktop and calls `growlnotify`. (Actually, if you run it on the
+desktop, where `/usr/local/bin/growlnotify` is available, it will
+call it directly.)
 
 This quite useful, when you frequently running some slow process on a
 server and want to be notified when it is done. In this case you just do:
 
-    some-long-running-task --with params; notify-back 'Horay! Task done.'
+    some-long-running-task --with params; nb 'Horay! Task done.'
 
 To make it work, add something like that to the `~/.ssh/config` on your
 desktop machine:
@@ -41,7 +43,7 @@ remote machine:
 
 To test, login via ssh to the remote machine and run:
 
-    notify-back "Hello from remote machine"
+    nb "Hello from remote machine"
 
 If all was done right, a growl notification should pop up on the desktop's screen.
 
