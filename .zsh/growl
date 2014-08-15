@@ -6,11 +6,12 @@
 function nb ()
 {
     GROWL_COMMAND=/usr/local/bin/growlnotify
+    message="${1:-Done}"
 
     if [ -e "$GROWL_COMMAND" ]; then
-        $GROWL_COMMAND -m "\"$message\"" -t "\"$title\""
+        title="${2:-Local command}"
+        $GROWL_COMMAND -m "$message" -t "$title"
     else
-        message="${1:-Done}"
         title="${2:-Remote command}"
         ssh back $GROWL_COMMAND -m "\"$message\"" -t "\"$title\""
     fi
