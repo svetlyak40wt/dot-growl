@@ -2,17 +2,23 @@
 # desktop's Growl through ssh
 # to make this works, install GrowlNotify
 # from here http://growl.info/downloads
+# or you need to install terminal-notifier using homebrew.
 
 function nb ()
 {
     GROWL_COMMAND=/usr/local/bin/growlnotify
+    NOTIFIER_COMMAND=/usr/local/bin/terminal-notifier
     message="${1:-Done}"
+    title="${2:-Local command}"
 
-    if [ -e "$GROWL_COMMAND" ]; then
-        title="${2:-Local command}"
-        $GROWL_COMMAND -m "$message" -t "$title"
+    if [ -e "$NOTIFIER_COMMAND" ]; then
+        $NOTIFIER_COMMAND -message "$message" -title "$title" -sound Submarine
     else
-        title="${2:-Remote command}"
-        ssh back $GROWL_COMMAND -m "\"$message\"" -t "\"$title\""
+        if [ -e "$GROWL_COMMAND" ]; then
+            $GROWL_COMMAND -m "$message" -t "$title"
+        else
+            title="${2:-Remote command}"
+            ssh back $GROWL_COMMAND -m "\"$message\"" -t "\"$title\""
+        fi
     fi
 }

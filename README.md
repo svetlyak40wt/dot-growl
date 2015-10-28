@@ -13,9 +13,9 @@ What is this?
 -------------
 
 This helper provides a zsh function `nb`, which goes via ssh back to
-you desktop and calls `growlnotify`. (Actually, if you run it on the
-desktop, where `/usr/local/bin/growlnotify` is available, it will
-call it directly.)
+you desktop and calls `growlnotify` or `terminal-notifier`.
+(Actually, if you run it on the desktop, where `/usr/local/bin/growlnotify`
+is available, it will call it directly.)
 
 This quite useful, when you frequently running some slow process on a
 server and want to be notified when it is done. In this case you just do:
