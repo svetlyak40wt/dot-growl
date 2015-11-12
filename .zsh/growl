@@ -15,10 +15,18 @@ function nb ()
         $NOTIFIER_COMMAND -message "$message" -title "$title" -sound Submarine
     else
         if [ -e "$GROWL_COMMAND" ]; then
+            echo 'RUN locally'
             $GROWL_COMMAND -m "$message" -t "$title"
         else
             title="${2:-Remote command}"
-            ssh back $GROWL_COMMAND -m "\"$message\"" -t "\"$title\""
+            #ssh back $GROWL_COMMAND -m "\"$message\"" -t "\"$title\""
+            ssh back <<EOF
+              if [ -e $GROWL_COMMAND ]; then
+                $GROWL_COMMAND -m "\"$message\"" -t "\"$title\""
+              else
+                $NOTIFY_COMMAND -message "\"$message\"" -title "\"$title\"" -sound Submarine
+              fi
+            EOF
         fi
     fi
 }

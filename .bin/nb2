@@ -17,6 +17,6 @@ fi
 
 
 title="${2:-Remote command}"
-ssh back ~/.bin/nb2 "$1" "$2"
+ssh back '~/.bin/nb' "'$message'" "'$title'"
 
 
