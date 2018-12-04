@@ -1,9 +1,22 @@
 #!/bin/bash
 
+# This command is from here https://github.com/vjeantet/alerter/releases
+# and will have a priority over others because alerts are sticky and
+# it is hard to miss them, and this is important if you are waiting some
+# long running job.
+ALERTER_COMMAND=/usr/local/bin/alerter
 GROWL_COMMAND=/usr/local/bin/growlnotify
 NOTIFIER_COMMAND=/usr/local/bin/terminal-notifier
+
 message="${1:-Done}"
 title="${2:-Local command}"
+
+if [ -e "$ALERTER_COMMAND" ]; then
+    # Alerter blocks until the user will make a click, that is why
+    # we need an & there.
+    $ALERTER_COMMAND -message "$message" -title "$title" -sound Submarine &
+    exit 0
+fi
 
 if [ -e "$NOTIFIER_COMMAND" ]; then
     $NOTIFIER_COMMAND -message "$message" -title "$title" -sound Submarine

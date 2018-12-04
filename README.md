@@ -12,8 +12,8 @@ symlinks.
 What is this?
 -------------
 
-This helper provides a zsh function `nb`, which goes via ssh back to
-you desktop and calls `growlnotify` or `terminal-notifier`.
+This helper provides a shell command `nb`, which goes via ssh back to
+you desktop and calls `growlnotify` or `terminal-notifier` or `alerter`
 (Actually, if you run it on the desktop, where `/usr/local/bin/growlnotify`
 is available, it will call it directly.)
 
